@@ -41,6 +41,8 @@ router.post("/", async (req, res, next) => {
     }
     res.statusCode(200).send(newRecipe);
   } catch (error) {
-    next(err);
+    next(error);
   }
 });
+
+module.exports = router;
