@@ -66,6 +66,14 @@ router.get("/:id", async (req, res, next) => {
     if (validate) {
       let recipeDB = await get_DataBaseID(id);
       return res.statusCode(200).send(recipeDB);
+    } else {
+      //esta en la Api
+      let recipeAPI = await get_ApiID(id);
+      return res.status(200).send(recipeAPI);
     }
-  } catch (error) {}
+  } catch (error) {
+    next(error);
+  }
 });
+
+module.exports = router;
