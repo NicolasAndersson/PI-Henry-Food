@@ -6,11 +6,11 @@ import {
   dietTypeFilter,
   aplhabeticalSort,
   scoreSort,
-} from "../actions";
-import Recipe from "./Recipe";
+} from "../../actions/index";
+import Recipe from "../recipe/Recipe";
 import { Link } from "react-router-dom";
-import Paged from "./Paged";
-import SearchBar from "./SearchBar";
+import Paged from "../paginado/Paged";
+import SearchBar from "../landingPage/LandingPage";
 import "./home.css";
 
 let prevId = 1;

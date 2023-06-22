@@ -1,44 +1,31 @@
-const { Router } = require("express");
-const { Recipe, Diet } = require("../db");
-const { types } = require("../controllers/diet");
+const { Router } = require('express');
+const { Recipe, Diet } = require('../db')
+
+
+
 const router = Router();
 
-router.post("/", async (req, res, next) => {
-  const { name, summary, healthScore, image, steps, diets } = req.body;
-  try {
-    const newRecipe = await Recipe.create({
-      name,
-      summary,
-      healthScore,
-      image,
-      steps,
-    });
+router.post('/', async (req, res, next) => {
+    try {
+        const { name, summary, score, healthScore, steps, dietTypes } = req.body
+        const newRecipe = await Recipe.create({
+            name,
+            summary,
+            score,
+            healthScore,
+            steps,
+        })
 
-    let dietDB = await Diet.findAll({
-      where: {
-        name: diets,
-      },
-    });
-    newRecipe.addDiet(dietDB);
-
-    var aux = diets.pop();
-    var validate = types.includes(aux);
-    if (!validate) {
-      var noRepeat = Diet.findAll({
-        where: {
-          name: aux,
-        },
-      });
-      if (!noRepeat.length) {
-        const newDiet = await Diet.create({ name: aux });
-        newRecipe.addDiet(newDiet);
-        types.push(aux);
-      }
-    }
-    res.statusCode(200).send(newRecipe);
-  } catch (error) {
-    next(error);
-  }
+        let dietTypesRecipeDb = await Diet.findAll({
+            where: {name: dietTypes}
+        })
+        newRecipe.addDiet(dietTypesRecipeDb)
+        res.status(200).send(newRecipe)  
+    } catch (error) {
+        next(error)
+    };
 });
+
+
 
 module.exports = router;

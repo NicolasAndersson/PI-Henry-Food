@@ -1,12 +1,13 @@
 const { Router } = require("express");
 
-const router = Router();
-const recipe = require("./recipe.js");
-const recipes = require("./recipes.js");
-const diet = require("./diet");
+const recipesRouter = require("./recipes");
+const typesRouter = require("./types");
+const recipeRouter = require("./recipe");
 
-router.use("/recipe", recipe);
-router.use("/recipes", recipes);
-router.use("/diet", diet);
+const router = Router();
+
+router.use("/recipes", recipesRouter);
+router.use("/types", typesRouter);
+router.use("/recipe", recipeRouter);
 
 module.exports = router;

@@ -2,7 +2,7 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useHistory } from "react-router-dom";
-import { getDietTypes, addRecipe } from "../actions/index";
+import { getDietTypes, addRecipe } from "../../actions/index";
 import "./addrecipe.css";
 
 function validate(input) {
