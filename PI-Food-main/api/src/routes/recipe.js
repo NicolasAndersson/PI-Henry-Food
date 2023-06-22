@@ -3,10 +3,6 @@ const { Recipe, Diet } = require("../db");
 const { types } = require("../controllers/diet");
 const router = Router();
 
-// POST /recipe:
-// Recibe los datos recolectados desde el formulario controlado de la ruta de creación de recetas por body
-// Crea una receta en la base de datos
-
 router.post("/", async (req, res, next) => {
   const { name, summary, healthScore, image, steps, diets } = req.body;
   try {

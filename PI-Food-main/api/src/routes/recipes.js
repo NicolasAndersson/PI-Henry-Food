@@ -6,10 +6,6 @@ const {
 } = require("../controllers/recipe");
 const router = Router();
 
-// GET /recipes?name="...":
-// Obtener un listado de las recetas que contengan la palabra ingresada como query parameter
-// Si no existe ninguna receta mostrar un mensaje adecuado
-
 router.get("/", async (req, res, next) => {
   const { name } = req.query;
   try {
@@ -54,11 +50,6 @@ router.get("/", async (req, res, next) => {
   }
 });
 
-//GET /recipes/{idReceta}:
-//Obtiene el detalle de una receta
-//Tiene que traer solo los datos que se piden en la ruta del detalle de la receta
-//Incluye los tipos de dieta asociados
-
 router.get("/:id", async (req, res, next) => {
   const { id } = req.params;
   let validate = id.includes("-"); // el guion es para saber que esta en la base de datos.
@@ -67,7 +58,6 @@ router.get("/:id", async (req, res, next) => {
       let recipeDB = await get_DataBaseID(id);
       return res.statusCode(200).send(recipeDB);
     } else {
-      //esta en la Api
       let recipeAPI = await get_ApiID(id);
       return res.status(200).send(recipeAPI);
     }

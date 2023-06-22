@@ -1,53 +1,22 @@
-import React from 'react';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
-import './App.css';
-import Start from './components/Start';
-import Home from './components/Home';
-import Details from './components/Details';
-import CreateRecipe from './components/CreateRecipe';
-import { CSSTransition, TransitionGroup } from "react-transition-group";
-import { Redirect } from "react-router-dom";
+import "./App.css";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
+import HomePage from "./components/HomePage";
+import LandingPage from "./components/LandingPage";
+import AddRecipe from "./components/AddRecipe";
+import RecipeDetails from "./components/RecipeDetails";
 
 function App() {
   return (
     <BrowserRouter>
-      <div className='App'>
-        <Route
-          render={({ location }) => (
-            <TransitionGroup className="container">
-              <CSSTransition
-                appear={true}
-                key={location.key}
-                timeout={{ enter: 400, exit: 200 }}
-                classNames="fade"
-              >
-                <div className="inner">
-                  <Switch key={location.key} location={location}>
-                    <Route exact path={'/'} component={Start}></Route>
-                    <Route path={'/home'} exact component={Home}></Route>
-                    <Route path={"/home/:id"} component={Details}></Route>
-                    <Route path={"/recipe"} component={CreateRecipe}></Route>
-                    <Redirect to="/"></Redirect>
-                  </Switch>
-                </div>
-              </CSSTransition>
-            </TransitionGroup>
-          )}
-        />
+      <div className="App">
+        <Switch>
+          <Route exact path="/" component={LandingPage} />
+          <Route path="/home" exact component={HomePage} />
+          <Route path="/recipe" exact component={AddRecipe} />
+          <Route path="/home/:id" component={RecipeDetails} />
+        </Switch>
       </div>
     </BrowserRouter>
-
-    // OPCIÓN NORMAL, SIN TRANSICIONES:
-    // <BrowserRouter>
-    //   <div className='App'>
-    //     <Switch>
-    //       <Route exact path={'/' } component={Start}></Route>
-    //       <Route path={'/home'} exact component={Home}></Route>
-    //       <Route path={"/home/:id"} component={Details}></Route>
-    //       <Route path={"/recipe"} component={CreateRecipe}></Route>
-    //     </Switch>
-    //   </div>
-    // </BrowserRouter>
   );
 }
 
