@@ -1,7 +1,6 @@
 const { Router } = require("express");
 const { dietTypesDb } = require("../controllers/types");
-const db = require("../db");
-const { Recipe, Diet } = require("../db");
+const { Diet } = require("../db");
 
 const router = Router();
 
